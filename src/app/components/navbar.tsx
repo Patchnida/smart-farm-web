@@ -79,7 +79,7 @@ function NavBar() {
             onClick={toggleSeeMore}
             className="w-full text-center py-2 text-blue-500 hover:text-blue-700"
           >
-            {showAll ? "See Less" : "See More"}
+            {showAll ? "แสดงน้อยกว่านี้" : "แสดงมากกว่านี้"}
           </button>
         </div>
       )}

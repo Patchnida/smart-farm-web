@@ -18,7 +18,7 @@ export const data: NotificationItem[] = [
           { src: "temIcon.png", alt: "Temperature Icon" },
           { src: "diseaseIcon.png", alt: "Disease Icon" }
         ],
-        timeAgo: "now",
+        timeAgo: "ตอนนี้",
         read: false
       }
     ]
@@ -34,7 +34,7 @@ export const data: NotificationItem[] = [
           { src: "moisIcon.png", alt: "Moisture Icon" },
           { src: "diseaseIcon.png", alt: "Disease Icon" }
         ],
-        timeAgo: "now",
+        timeAgo: "ตอนนี้",
         read: false
       }
     ]
@@ -47,7 +47,7 @@ export const data: NotificationItem[] = [
         icons: [
           { src: "humidIcon.png", alt: "Humidity Icon" }
         ],
-        timeAgo: "now",
+        timeAgo: "ตอนนี้",
         read: true
       }
     ]
@@ -61,7 +61,7 @@ export const data: NotificationItem[] = [
           { src: "temIcon.png", alt: "Temperature Icon" },
           { src: "diseaseIcon.png", alt: "Disease Icon" }
         ],
-        timeAgo: "18 hr ago",
+        timeAgo: "4 ชั่วโมงที่แล้ว",
         read: true
       }
     ]
@@ -77,7 +77,7 @@ export const data: NotificationItem[] = [
           { src: "moisIcon.png", alt: "Moisture Icon" },
           { src: "diseaseIcon.png", alt: "Disease Icon" }
         ],
-        timeAgo: "18 hr ago",
+        timeAgo: "4 ชั่วโมงที่แล้ว",
         read: true
       }
     ]
@@ -90,7 +90,7 @@ export const data: NotificationItem[] = [
         icons: [
           { src: "humidIcon.png", alt: "Humidity Icon" }
         ],
-        timeAgo: "18 hr ago",
+        timeAgo: "4 ชั่วโมงที่แล้ว",
         read: true
       }
     ]
@@ -104,7 +104,7 @@ export const data: NotificationItem[] = [
           { src: "temIcon.png", alt: "Temperature Icon" },
           { src: "diseaseIcon.png", alt: "Disease Icon" }
         ],
-        timeAgo: "now",
+        timeAgo: "4 ชั่วโมงที่แล้ว",
         read: false
       }
     ]
@@ -120,7 +120,7 @@ export const data: NotificationItem[] = [
           { src: "moisIcon.png", alt: "Moisture Icon" },
           { src: "diseaseIcon.png", alt: "Disease Icon" }
         ],
-        timeAgo: "now",
+        timeAgo: "4 ชั่วโมงที่แล้ว",
         read: false
       }
     ]
@@ -133,7 +133,7 @@ export const data: NotificationItem[] = [
         icons: [
           { src: "humidIcon.png", alt: "Humidity Icon" }
         ],
-        timeAgo: "now",
+        timeAgo: "4 ชั่วโมงที่แล้ว",
         read: true
       }
     ]
@@ -147,7 +147,7 @@ export const data: NotificationItem[] = [
           { src: "temIcon.png", alt: "Temperature Icon" },
           { src: "diseaseIcon.png", alt: "Disease Icon" }
         ],
-        timeAgo: "18 hr ago",
+        timeAgo: "8 ชั่วโมงที่แล้ว",
         read: true
       }
     ]
@@ -163,7 +163,7 @@ export const data: NotificationItem[] = [
           { src: "moisIcon.png", alt: "Moisture Icon" },
           { src: "diseaseIcon.png", alt: "Disease Icon" }
         ],
-        timeAgo: "18 hr ago",
+        timeAgo: "8 ชั่วโมงที่แล้ว",
         read: true
       }
     ]
@@ -176,7 +176,7 @@ export const data: NotificationItem[] = [
         icons: [
           { src: "humidIcon.png", alt: "Humidity Icon" }
         ],
-        timeAgo: "18 hr ago",
+        timeAgo: "8 ชั่วโมงที่แล้ว",
         read: true
       }
     ]

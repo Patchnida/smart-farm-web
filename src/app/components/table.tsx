@@ -1,6 +1,8 @@
 import { useState } from "react";
+import PopupAddID from "./popupAddID";
+import PopUpDelete from "./popUpDelete";
 
-const data = [
+const initialData = [
     { id: "0001", temp: "25°C", humid: "67%", moisture: "66%", disease: "ไม่เป็นโรค" },
     { id: "0002", temp: "25°C", humid: "67%", moisture: "66%", disease: "ไม่เป็นโรค" },
     { id: "0003", temp: "25°C", humid: "67%", moisture: "91%", disease: "ไม่เป็นโรค" },
@@ -16,9 +18,23 @@ const data = [
 ];
 
 function Table() {
+    const [data, setData] = useState(initialData);
     const [searchTerm, setSearchTerm] = useState("");
     const [currentPage, setCurrentPage] = useState(1);
     const rowsPerPage = 10;
+
+    // Popup states
+    const [isPopUpOpen, setIsPopUpOpen] = useState(false); // For adding new ID
+    const [isDeletePopUpOpen, setIsDeletePopUpOpen] = useState(false); // For delete confirmation
+    const [idToDelete, setIdToDelete] = useState<string | null>(null); // Tracks the ID to delete
+
+    const [newEntry, setNewEntry] = useState({
+        id: "",
+        temp: "",
+        humid: "",
+        moisture: "",
+        disease: ""
+    });
 
     const filteredData = data.filter(row => 
         row.id.toLowerCase().startsWith(searchTerm.toLowerCase())
@@ -40,6 +56,35 @@ function Table() {
         }
     };
 
+    const handleSave = () => {
+        setData(prevData => [...prevData, newEntry]);
+        setNewEntry({ id: "", temp: "", humid: "", moisture: "", disease: "" });
+        setIsPopUpOpen(false);
+    };
+
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.target;
+        setNewEntry(prev => ({ ...prev, [name]: value }));
+    };
+
+    const openDeletePopup = (id: string) => {
+        setIdToDelete(id);
+        setIsDeletePopUpOpen(true);
+    };
+
+    const handleConfirmDelete = () => {
+        if (idToDelete) {
+            setData(prevData => prevData.filter(row => row.id !== idToDelete));
+            setIdToDelete(null);
+        }
+        setIsDeletePopUpOpen(false);
+    };
+
+    const handleCancelDelete = () => {
+        setIdToDelete(null);
+        setIsDeletePopUpOpen(false);
+    };
+
     return (
         <div className="w-full">
             <div className="flex justify-between items-center mb-4">
@@ -47,11 +92,16 @@ function Table() {
                 <div className="flex space-x-2">
                     <input 
                         type="text" 
-                        placeholder="Search by ID" 
+                        placeholder="ค้นหาด้วย ID" 
                         className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
                         onChange={(e) => setSearchTerm(e.target.value)}
                     />
-                    <button className="bg-green-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-green-600">Add New ID</button>
+                    <button
+                        className="bg-green-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-green-600"
+                        onClick={() => setIsPopUpOpen(true)} 
+                    >
+                        เพิ่ม ID ใหม่
+                    </button>
                 </div>
             </div>
             <table className="min-w-full bg-white border border-gray-200">
@@ -62,6 +112,7 @@ function Table() {
                         <th className="py-3 px-4 text-left font-semibold text-gray-600">ความชื้นในอากาศ</th>
                         <th className="py-3 px-4 text-left font-semibold text-gray-600">ความชื้นในดิน</th>
                         <th className="py-3 px-4 text-left font-semibold text-gray-600">ความเสี่ยงในการเกิดโรค</th>
+                        <th className="py-3 px-4 text-left font-semibold text-gray-600"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -72,6 +123,7 @@ function Table() {
                             <td className={`py-3 px-4 ${row.humid === "89%" ? "text-red-500 font-semibold" : "text-green-500 font-semibold"}`}>{row.humid}</td>
                             <td className={`py-3 px-4 ${row.moisture === "91%" ? "text-red-500 font-semibold" : "text-green-500 font-semibold"}`}>{row.moisture}</td>
                             <td className={`py-3 px-4 ${row.disease === "เป็นโรค" ? "text-red-500 font-semibold" : "text-green-500 font-semibold"}`}>{row.disease}</td>
+                            <td className="py-3 px-4 text-red-500 font-semibold cursor-pointer hover:underline" onClick={() => openDeletePopup(row.id)}>ลบ</td>
                         </tr>
                     ))}
                 </tbody>
@@ -96,6 +148,25 @@ function Table() {
                     </button>
                 </div>
             )}
+
+            <PopupAddID isOpen={isPopUpOpen} onClose={() => setIsPopUpOpen(false)} onSave={handleSave}>
+                <input
+                    name="id"
+                    type="text"
+                    placeholder="เพิ่ม ID ใหม่"
+                    value={newEntry.id}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 mb-4"
+                />
+            </PopupAddID>
+
+
+            <PopUpDelete
+                isOpen={isDeletePopUpOpen}
+                onClose={handleCancelDelete}
+                Confirm={handleConfirmDelete}
+                id={idToDelete}
+            />
         </div>
     );
 }
