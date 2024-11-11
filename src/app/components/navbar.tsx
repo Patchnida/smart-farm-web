@@ -61,26 +61,29 @@ function NavBar() {
           </div>
         )}
 
-        {showNotifications && (
-          <div className="absolute top-16 right-0 w-80 max-h-80 shadow-lg border border-gray-200 rounded-md z-50 bg-white overflow-y-auto">
-            {(showAll ? notifications : notifications.slice(0, 3)).map((notification) => (
+      {showNotifications && (
+        <div className="absolute top-16 right-0 w-80 max-h-80 shadow-lg border border-gray-200 rounded-md z-50 bg-white overflow-y-auto">
+          {(showAll ? notifications : notifications.slice(0, 3)).map((notification) => (
+            notification.detail.map((detailItem) => (
               <Notification
-                key={notification.id}
-                id={notification.id}
-                icons={notification.icons}
-                timeAgo={notification.timeAgo}
-                read={notification.read}
-                onRead={handleRead}
+                key={detailItem.id}
+                id={detailItem.id}
+                icons={detailItem.icons}
+                timeAgo={detailItem.timeAgo}
+                read={detailItem.read}
+                onRead={() => handleRead(detailItem.id)}
               />
-            ))}
-            <button
-              onClick={toggleSeeMore}
-              className="w-full text-center py-2 text-blue-500 hover:text-blue-700"
-            >
-              {showAll ? "See Less" : "See More"}
-            </button>
-          </div>
-        )}
+            ))
+          ))}
+          <button
+            onClick={toggleSeeMore}
+            className="w-full text-center py-2 text-blue-500 hover:text-blue-700"
+          >
+            {showAll ? "See Less" : "See More"}
+          </button>
+        </div>
+      )}
+
       </div>
     </div>
   );

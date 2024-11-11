@@ -1,17 +1,71 @@
 'use client'
 
-import Image from "next/image";
-import NavBar from "./components/navbar";
+import { useState, useEffect } from "react";
 import { useDate } from "./components/DataContext";
 
 export default function Home() {
-  const { selectedDate } = useDate();
+  const { selectedDate, setSelectedDate } = useDate();
+  const [ defaultTime, setDefaultTime ] = useState("");
+  const [ selectedTime, setSelectedTime ] = useState(defaultTime)
+
+  const getDefaultTimeOption = () => {
+    const currentHour = new Date().getHours();
+    if (currentHour >= 0 && currentHour < 6) return "00:00";
+    if (currentHour >= 6 && currentHour < 12) return "06:00";
+    if (currentHour >= 12 && currentHour < 18) return "12:00";
+    if (currentHour >= 18 && currentHour < 24) return "18:00";
+    return "error";
+  };
+
+  useEffect(() => {
+    const timeOption = getDefaultTimeOption();
+    if (timeOption !== "error") {
+      setDefaultTime(timeOption);
+      setSelectedTime(timeOption);
+    } else {
+      console.error("Invalid time range");
+    }
+  }, []);
+
+  const handleTimeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectedTime(event.target.value); 
+    setSelectedDate(selectedDate); 
+  };
+
+  const formatDateToThai = (date) => {
+    const dayNames = ["วันอาทิตย์", "วันจันทร์", "วันอังคาร", "วันพุธ", "วันพฤหัสบดี", "วันศุกร์", "วันเสาร์"];
+    const monthNames = [
+      "มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน",
+      "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"
+    ];
+
+    const dayName = dayNames[date.getDay()];
+    const day = date.getDate();
+    const monthName = monthNames[date.getMonth()];
+    const buddhistYear = date.getFullYear() + 543;
+
+    return `${dayName}ที่ ${day} ${monthName} ${buddhistYear}`;
+  };
 
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen">      
-      <main className="flex flex-row gap-8 row-start-2 items-center sm:items-start">
-        <h1>Selected Date:</h1>
-        <p>{selectedDate.toDateString()}</p>
+    <div className="grid grid-rows-[20px_1fr_20px] min-h-screen">      
+      <main className="flex flex-row w-full gap-8 ">
+        <div className="w-full h-96 m-5 p-5 bg-white rounded-lg shadow-sm">
+          <p
+            className="text-3xl font-bold"
+          >{formatDateToThai(selectedDate)}</p>
+          <select 
+            onChange={handleTimeChange} 
+            value={selectedTime}
+            className="my-3 p-2 bg-white border border-gray-300 rounded-lg shadow-sm text-black focus:outline-none focus:border-blue-200 focus:ring-2 focus:ring-blue-200 transition"
+          >
+            <option value="" disabled>Select Time</option>
+            <option value="00:00">00:00</option>
+            <option value="06:00">06:00</option>
+            <option value="12:00">12:00</option>
+            <option value="18:00">18:00</option>
+          </select>
+        </div>
       </main>
     </div>
   );

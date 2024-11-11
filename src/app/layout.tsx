@@ -17,7 +17,7 @@ export default function RootLayout({
   return (
     <DateProvider>
       <html lang="en">
-        <body>
+        <body style={{ fontFamily: "'Prompt', Arial, Helvetica, sans-serif" }}>
           <NavBar />
           {children}
         </body>
