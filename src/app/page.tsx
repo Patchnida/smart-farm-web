@@ -1,14 +1,15 @@
-'use client'
+'use client';
 
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useDate } from "./components/DataContext";
+import Graph from "./components/graph";
 
 export default function Home() {
   const { selectedDate, setSelectedDate } = useDate();
-  const [ defaultTime, setDefaultTime ] = useState("");
-  const [ selectedTime, setSelectedTime ] = useState(defaultTime)
+  const [defaultTime, setDefaultTime] = useState<string>("");
+  const [selectedTime, setSelectedTime] = useState<string>(defaultTime);
 
-  const getDefaultTimeOption = () => {
+  const getDefaultTimeOption = (): string => {
     const currentHour = new Date().getHours();
     if (currentHour >= 0 && currentHour < 6) return "00:00";
     if (currentHour >= 6 && currentHour < 12) return "06:00";
@@ -32,7 +33,9 @@ export default function Home() {
     setSelectedDate(selectedDate); 
   };
 
-  const formatDateToThai = (date) => {
+  const formatDateToThai = (date: Date | undefined): string => {
+    if (!date) return "Invalid date";
+
     const dayNames = ["วันอาทิตย์", "วันจันทร์", "วันอังคาร", "วันพุธ", "วันพฤหัสบดี", "วันศุกร์", "วันเสาร์"];
     const monthNames = [
       "มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน",
@@ -48,12 +51,12 @@ export default function Home() {
   };
 
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] min-h-screen">      
-      <main className="flex flex-row w-full gap-8 ">
-        <div className="w-full h-96 m-5 p-5 bg-white rounded-lg shadow-sm">
-          <p
-            className="text-3xl font-bold"
-          >{formatDateToThai(selectedDate)}</p>
+    <div className="grid grid-rows-[20px_1fr_20px] max-h-screen">      
+      <main className="flex flex-row w-full h-svh gap-8">
+        <div className="w-full h-5/6 m-5 p-10 bg-white rounded-lg shadow-sm">
+          <p className="text-3xl font-bold">
+            {formatDateToThai(selectedDate)}
+          </p>
           <select 
             onChange={handleTimeChange} 
             value={selectedTime}
@@ -65,6 +68,10 @@ export default function Home() {
             <option value="12:00">12:00</option>
             <option value="18:00">18:00</option>
           </select>
+
+          <Graph />
+
+          
         </div>
       </main>
     </div>
