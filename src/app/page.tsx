@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { useDate } from "./components/DataContext";
 import Graph from "./components/graph";
+import Table from "./components/table";
 
 export default function Home() {
   const { selectedDate, setSelectedDate } = useDate();
@@ -51,9 +52,9 @@ export default function Home() {
   };
 
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] max-h-screen">      
-      <main className="flex flex-row w-full h-svh gap-8">
-        <div className="w-full h-5/6 m-5 p-10 bg-white rounded-lg shadow-sm">
+    <div className="grid grid-rows-[20px_1fr_20px] h-full">      
+      <main className="flex flex-col w-full h-fit items-center">
+        <div className="w-11/12 h-5/6 mt-5 p-10 bg-white rounded-lg shadow-sm">
           <p className="text-3xl font-bold">
             {formatDateToThai(selectedDate)}
           </p>
@@ -71,7 +72,10 @@ export default function Home() {
 
           <Graph />
 
-          
+        </div>
+
+        <div className="w-11/12 h-5/6 my-5 p-10 bg-white rounded-lg shadow-sm">
+          <Table />
         </div>
       </main>
     </div>
