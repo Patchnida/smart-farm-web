@@ -52,10 +52,10 @@ function NavBar() {
       </Link>
       <div className="flex items-center gap-3 relative">
         <button className="flex justify-center items-center w-10 h-10 border border-gray-400 rounded-full cursor-pointer" onClick={toggleCalendar}>
-          <img src="schedule.png" alt="calendar icon" className="w-6 h-6" />
+          <img src="/schedule.png" alt="calendar icon" className="w-6 h-6" />
         </button>
         <button className="flex justify-center items-center w-10 h-10 border border-gray-400 rounded-full cursor-pointer" onClick={toggleNotifications}>
-          <img src="bell.png" alt="notification icon" className="w-6 h-6" />
+          <img src="/bell.png" alt="notification icon" className="w-6 h-6" />
         </button>
 
         {showCalendar && (

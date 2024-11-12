@@ -1,13 +1,16 @@
 'use client';
 
-import React from "react";
+import React, { useState } from "react";
 import { useParams } from "next/navigation";
 import { initialData } from "@/app/eachIdData";
 import Link from "next/link";
 import Button from '@mui/material/Button';
+import PopupDisease from "@/components/popUpDisease";
 
 function Detail() {
     const { id } = useParams(); 
+    const [isPopupOpen, setIsPopupOpen] = useState(false);
+
     if (!id || !initialData[0]) return <p>ข้อมูลไม่พบสำหรับ ID นี้</p>;
 
     const detailData = initialData[0].detail.find(detail => detail.id === id);
@@ -34,6 +37,24 @@ function Detail() {
         return `${dayName}ที่ ${day} ${monthName} ${buddhistYear}`;
     };
 
+    const handleOpenPopup = () => setIsPopupOpen(true);
+    const handleClosePopup = () => setIsPopupOpen(false);
+
+    const historyData = [
+        {
+            date: "2022-10-23",
+            status: "ปกติ",
+            disease: "ไม่มีโรค",
+            image: "/path/to/image1.png",
+        },
+        {
+            date: "2022-10-24",
+            status: "เป็นโรค",
+            disease: "จุดใบจุด",
+            image: "/path/to/image2.png",
+        },
+    ];
+
     return (
         <div className="grid grid-rows-[20px_1fr_20px] h-full">      
             <div className="flex flex-col w-full h-fit items-center">
@@ -48,10 +69,9 @@ function Detail() {
                    </div>
                     <p className="font-semibold text-lg mt-2">ID {detailData.id}</p>
 
-                    <div className="flex flex-wrap gap-5 m-5 h-full">
+                    <div className="flex flex-wrap gap-5 mt-5 h-full">
                         {/* อุณหภูมิในดิน */}
-                        <Link
-                         href={"/"}
+                        <div
                          className="flex flex-col w-full md:w-[48%] bg-white border border-gray-200 rounded-lg shadow-md p-10 text-lg flex-grow min-h-[250px]">
                             <div className="flex justify-between w-full">
                                 <div className="flex flex-col gap-2">
@@ -65,11 +85,10 @@ function Detail() {
                                 <img src="/temIcon.png" alt="Temperature Icon" className="w-fit h-fit cursor-pointer" />
                             </div>
                             <p className="mt-2">คำแนะนำ : ควรลดอุณหภูมิ</p>
-                        </Link>
+                        </div>
 
                         {/* ความชื้นในอากาศ */}
-                        <Link
-                         href={"/"}
+                        <div
                          className="flex flex-col w-full md:w-[48%] bg-white border border-gray-200 rounded-lg shadow-md p-10 text-lg flex-grow min-h-[250px]">
                             <div className="flex justify-between w-full">
                                 <div className="flex flex-col gap-2">
@@ -83,11 +102,10 @@ function Detail() {
                                 <img src="/humidIcon.png" alt="Humid Icon" className="w-fit h-fit cursor-pointer" />
                             </div>
                             <p className="mt-2">คำแนะนำ : -</p>
-                        </Link>
+                        </div>
 
                         {/* ความชื้นในดิน */}
-                        <Link
-                         href={"/"}
+                        <div
                          className="flex flex-col w-full md:w-[48%] bg-white border border-gray-200 rounded-lg shadow-md p-10 text-lg flex-grow min-h-[250px]">
                             <div className="flex justify-between w-full">
                                 <div className="flex flex-col gap-2">
@@ -101,11 +119,10 @@ function Detail() {
                                 <img src="/moisIcon.png" alt="Moisture Icon" className="w-fit h-fit cursor-pointer" />
                             </div>
                             <p className="mt-2">คำแนะนำ : -</p>
-                        </Link>
+                        </div>
 
                         {/* ความเสี่ยงในการเป็นโรค */}
-                        <Link
-                         href={"/"}
+                        <div
                          className="flex flex-col w-full md:w-[48%] bg-white border border-gray-200 rounded-lg shadow-md p-10 text-lg flex-grow min-h-[250px]">
                             <div className="flex justify-between w-full">
                                 <div className="flex flex-col gap-2 w-8/12 mb-5">
@@ -115,21 +132,38 @@ function Detail() {
                                 </div>
                                 <img src="/diseaseIcon.png" alt="Disease Icon" className="w-fit h-fit cursor-pointer" />
                             </div>
-                            <p className="mt-2">คำแนะนำ : ใช้สารประเภทคลอโรธาโรนิล (chlorothalonil) ฉีด พ่นสม่าเสมอขณะระบาด จะได้ผลดี</p>
+                            <p>คำแนะนำ : ใช้สารประเภทคลอโรธาโรนิล (chlorothalonil) ฉีด พ่นสม่าเสมอขณะระบาด จะได้ผลดี</p>
                             <div className="flex justify-between mt-2">
                                 <Button
                                     className='my-2 px-5 text-white bg-green-600 hover:bg-green-700 hover:text-white'    
                                 >ถ่ายรูป
                                 </Button>
                                 <Button
+                                onClick={handleOpenPopup}
                                 className='my-2 px-5 bg-gray-100 hover:bg-gray-200'    
                                 >ดูประวัติย้อนหลัง
                                 </Button>
                             </div>
-                        </Link>
+                        </div>
                     </div>
                 </div>
             </div>
+
+            <PopupDisease isOpen={isPopupOpen} onClose={handleClosePopup} onSave={() => {}}>
+                <div className="flex flex-col">
+                    {historyData.map((record, index) => (
+                        <div key={index} className="border-b p-4">
+                            <p className="text-gray-500">{record.date}</p>
+                            <p className={`${record.status === "ปกติ" ? "text-green-500" : "text-red-500"}`}>
+                                {record.status}
+                            </p>
+                            <p>{record.disease}</p>
+                            <img src={record.image} alt="Disease image" className="w-full h-auto mt-2" />
+                        </div>
+                    ))}
+                </div>
+            </PopupDisease>
+
         </div>
     );
 }
