@@ -47,7 +47,7 @@ function NavBar() {
       <Link 
         href="/"
         className="flex items-center gap-3">
-        <img src="LPKNicon2.png" alt="LPKN Icon" className="w-26 h-10 cursor-pointer" />
+        <img src="/LPKNicon2.png" alt="LPKN Icon" className="w-26 h-10 cursor-pointer" />
         <h1 className="text-lg font-semibold text-gray-800 cursor-pointer">LPKN</h1>
       </Link>
       <div className="flex items-center gap-3 relative">

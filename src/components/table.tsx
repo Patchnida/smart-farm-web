@@ -1,22 +1,8 @@
 import { useState } from "react";
-import PopupAddID from "./popupAddID";
+import PopupAddID from "./popUpAddID";
 import PopUpDelete from "./popUpDelete";
 import Link from "next/link";
-
-const initialData = [
-    { id: "0001", temp: "25°C", humid: "67%", moisture: "66%", disease: "ไม่เป็นโรค" },
-    { id: "0002", temp: "25°C", humid: "67%", moisture: "66%", disease: "ไม่เป็นโรค" },
-    { id: "0003", temp: "25°C", humid: "67%", moisture: "91%", disease: "ไม่เป็นโรค" },
-    { id: "0004", temp: "25°C", humid: "67%", moisture: "66%", disease: "ไม่เป็นโรค" },
-    { id: "0005", temp: "36°C", humid: "87%", moisture: "66%", disease: "ไม่เป็นโรค" },
-    { id: "0006", temp: "25°C", humid: "89%", moisture: "66%", disease: "เป็นโรค" },
-    { id: "0007", temp: "25°C", humid: "67%", moisture: "66%", disease: "ไม่เป็นโรค" },
-    { id: "0008", temp: "25°C", humid: "67%", moisture: "66%", disease: "เป็นโรค" },
-    { id: "0009", temp: "36°C", humid: "87%", moisture: "66%", disease: "ไม่เป็นโรค" },
-    { id: "0010", temp: "25°C", humid: "89%", moisture: "66%", disease: "เป็นโรค" },
-    { id: "0011", temp: "25°C", humid: "67%", moisture: "66%", disease: "ไม่เป็นโรค" },
-    { id: "0012", temp: "25°C", humid: "67%", moisture: "66%", disease: "เป็นโรค" },
-];
+import { initialData } from "@/app/eachIdData";
 
 function Table() {
     const [data, setData] = useState(initialData);
@@ -24,10 +10,9 @@ function Table() {
     const [currentPage, setCurrentPage] = useState(1);
     const rowsPerPage = 10;
 
-    // Popup states
-    const [isPopUpOpen, setIsPopUpOpen] = useState(false); // For adding new ID
-    const [isDeletePopUpOpen, setIsDeletePopUpOpen] = useState(false); // For delete confirmation
-    const [idToDelete, setIdToDelete] = useState<string | null>(null); // Tracks the ID to delete
+    const [isPopUpOpen, setIsPopUpOpen] = useState(false);
+    const [isDeletePopUpOpen, setIsDeletePopUpOpen] = useState(false);
+    const [idToDelete, setIdToDelete] = useState<string | null>(null);
 
     const [newEntry, setNewEntry] = useState({
         id: "",
@@ -37,7 +22,7 @@ function Table() {
         disease: ""
     });
 
-    const filteredData = data.filter(row => 
+    const filteredData = data[0].detail.filter(row => 
         row.id.toLowerCase().startsWith(searchTerm.toLowerCase())
     );
 
@@ -58,7 +43,11 @@ function Table() {
     };
 
     const handleSave = () => {
-        setData(prevData => [...prevData, newEntry]);
+        setData(prevData => {
+            const updatedData = [...prevData];
+            updatedData[0].detail = [...updatedData[0].detail, newEntry];
+            return updatedData;
+        });
         setNewEntry({ id: "", temp: "", humid: "", moisture: "", disease: "" });
         setIsPopUpOpen(false);
     };
@@ -75,7 +64,11 @@ function Table() {
 
     const handleConfirmDelete = () => {
         if (idToDelete) {
-            setData(prevData => prevData.filter(row => row.id !== idToDelete));
+            setData(prevData => {
+                const updatedData = [...prevData];
+                updatedData[0].detail = updatedData[0].detail.filter(row => row.id !== idToDelete);
+                return updatedData;
+            });
             setIdToDelete(null);
         }
         setIsDeletePopUpOpen(false);
@@ -120,9 +113,9 @@ function Table() {
                     {currentRows.map((row) => (
                         <tr key={row.id} className="border-b border-gray-200">
                             <td className="py-3 px-4 text-gray-700">
-                            <Link href={`/detail/${row.id}`}>
+                                <Link href={`/detail/${row.id}`}>
                                     {row.id}
-                            </Link>
+                                </Link>
                             </td>
                             <td className={`py-3 px-4 ${row.temp === "36°C" ? "text-red-500 font-semibold" : "text-green-500 font-semibold"}`}>{row.temp}</td>
                             <td className={`py-3 px-4 ${row.humid === "89%" ? "text-red-500 font-semibold" : "text-green-500 font-semibold"}`}>{row.humid}</td>
@@ -132,7 +125,6 @@ function Table() {
                         </tr>
                     ))}
                 </tbody>
-
             </table>
 
             {filteredData.length > 10 && (
@@ -165,7 +157,6 @@ function Table() {
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 mb-4"
                 />
             </PopupAddID>
-
 
             <PopUpDelete
                 isOpen={isDeletePopUpOpen}

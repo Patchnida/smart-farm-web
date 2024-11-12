@@ -1,3 +1,5 @@
+import { time } from "console";
+
 export interface NotificationItem {
   dateTime: string;
   detail: Array<{
@@ -183,189 +185,30 @@ export const data: NotificationItem[] = [
   }
 ];
 
+export const icons = [
+  { src: "temIcon.png", alt: "Temperature Icon" },
+  { src: "humidIcon.png", alt: "Humidity Icon" },
+  { src: "moisIcon.png", alt: "Moisture Icon" },
+  { src: "diseaseIcon.png", alt: "Disease Icon" }
+];
 
-// export const data = [
-//     {
-//       "id": "0001",
-//       "date": "Wednesday, October 23, 2022",
-//       "time": "13:00",
-//       "temperature": {
-//         "label": "อุณหภูมิในดิน",
-//         "icon": "temIcon.png",
-//         "optimalValue": {
-//           "min": 20,
-//           "max": 30
-//         },
-//         "value": 32.5,
-//         "status": "High",
-//         "recommendation": "ควรลดอุณหภูมิ"
-//       },
-//       "humidity": {
-//         "label": "ความชื้นในอากาศ",
-//         "icon": "humidIcon.png",
-//         "optimalValue": {
-//           "min": 60,
-//           "max": 80
-//         },
-//         "value": 85,
-//         "status": "Normal"
-//       },
-//       "moisture": {
-//         "label": "ความชื้นในดิน",
-//         "icon": "moisIcon.png",
-//         "optimalValue": {
-//           "min": 7.2,
-//           "max": 7.9
-//         },
-//         "value": 8.2,
-//         "status": "High",
-//         "recommendation": "เพิ่มดินหรือปุ๋ย"
-//       },
-//       "disease": {
-//         "label": "การเกิดโรค",
-//         "icon": "diseaseIcon.png",
-//         "status": "เป็นโรค",
-//         "type": "ใบจุดตากบ",
-//         "recommendation": "ใช้สารประเภทคลอโรธาโรนิล (chlorothalonil) ฉีด พ่นสม่ำเสมอขณะระบาด",
-//         "image": "https://www.farmkaset.org/contents/images/2-258-cercospora-capsici.jpg"
-//       }
-//     },
-//     {
-//       "id": "0002",
-//       "date": "Thursday, October 24, 2022",
-//       "time": "14:00",
-//       "temperature": {
-//         "label": "อุณหภูมิในดิน",
-//         "icon": "temIcon.png",
-//         "optimalValue": {
-//           "min": 20,
-//           "max": 30
-//         },
-//         "value": 28.0,
-//         "status": "Normal",
-//         "recommendation": ""
-//       },
-//       "humidity": {
-//         "label": "ความชื้นในอากาศ",
-//         "icon": "humidIcon.png",
-//         "optimalValue": {
-//           "min": 60,
-//           "max": 80
-//         },
-//         "value": 78,
-//         "status": "Normal"
-//       },
-//       "moisture": {
-//         "label": "ความชื้นในดิน",
-//         "icon": "moisIcon.png",
-//         "optimalValue": {
-//           "min": 7.2,
-//           "max": 7.9
-//         },
-//         "value": 7.5,
-//         "status": "Normal"
-//       },
-//       "disease": {
-//         "label": "การเกิดโรค",
-//         "icon": "diseaseIcon.png",
-//         "status": "ไม่มีโรค",
-//         "type": "",
-//         "recommendation": "",
-//         "image": ""
-//       }
-//     },
-//     {
-//       "id": "0003",
-//       "date": "Friday, October 25, 2022",
-//       "time": "15:00",
-//       "temperature": {
-//         "label": "อุณหภูมิในดิน",
-//         "icon": "temIcon.png",
-//         "optimalValue": {
-//           "min": 20,
-//           "max": 30
-//         },
-//         "value": 18.5,
-//         "status": "Low",
-//         "recommendation": "ควรเพิ่มอุณหภูมิ"
-//       },
-//       "humidity": {
-//         "label": "ความชื้นในอากาศ",
-//         "icon": "humidIcon.png",
-//         "optimalValue": {
-//           "min": 60,
-//           "max": 80
-//         },
-//         "value": 55,
-//         "status": "Low",
-//         "recommendation": "ควรเพิ่มความชื้นในอากาศ"
-//       },
-//       "moisture": {
-//         "label": "ความชื้นในดิน",
-//         "icon": "moisIcon.png",
-//         "optimalValue": {
-//           "min": 7.2,
-//           "max": 7.9
-//         },
-//         "value": 6.9,
-//         "status": "Low",
-//         "recommendation": "เพิ่มปุ๋ยหรือรดน้ำ"
-//       },
-//       "disease": {
-//         "label": "การเกิดโรค",
-//         "icon": "diseaseIcon.png",
-//         "status": "ไม่มีโรค",
-//         "type": "",
-//         "recommendation": "",
-//         "image": ""
-//       }
-//     },
-//     {
-//       "id": "0004",
-//       "date": "Saturday, October 26, 2022",
-//       "time": "10:30",
-//       "temperature": {
-//         "label": "อุณหภูมิในดิน",
-//         "icon": "temIcon.png",
-//         "optimalValue": {
-//           "min": 20,
-//           "max": 30
-//         },
-//         "value": 31.0,
-//         "status": "High",
-//         "recommendation": "ควรลดอุณหภูมิ"
-//       },
-//       "humidity": {
-//         "label": "ความชื้นในอากาศ",
-//         "icon": "humidIcon.png",
-//         "optimalValue": {
-//           "min": 60,
-//           "max": 80
-//         },
-//         "value": 82,
-//         "status": "High",
-//         "recommendation": "ควรลดความชื้นในอากาศ"
-//       },
-//       "moisture": {
-//         "label": "ความชื้นในดิน",
-//         "icon": "moisIcon.png",
-//         "optimalValue": {
-//           "min": 7.2,
-//           "max": 7.9
-//         },
-//         "value": 8.1,
-//         "status": "High",
-//         "recommendation": "ลดปุ๋ยและความชื้น"
-//       },
-//       "disease": {
-//         "label": "การเกิดโรค",
-//         "icon": "diseaseIcon.png",
-//         "status": "ไม่มีโรค",
-//         "type": "",
-//         "recommendation": "",
-//         "image": ""
-//       }
-//     }
-//   ];
-
-  
+export const initialData = [
+  {
+    date: "Wednesday, October 25, 2024",
+    time: "12.00",
+    detail: [
+      { id: "0001", temp: "33°C", humid: "67%", moisture: "66%", disease: "เป็นโรคใบจุดตากบ" },
+      { id: "0002", temp: "25°C", humid: "67%", moisture: "66%", disease: "ไม่เป็นโรค" },
+      { id: "0003", temp: "25°C", humid: "67%", moisture: "91%", disease: "ไม่เป็นโรค" },
+      { id: "0004", temp: "25°C", humid: "67%", moisture: "66%", disease: "ไม่เป็นโรค" },
+      { id: "0005", temp: "36°C", humid: "87%", moisture: "66%", disease: "ไม่เป็นโรค" },
+      { id: "0006", temp: "25°C", humid: "89%", moisture: "66%", disease: "เป็นโรคใบหยิก" },
+      { id: "0007", temp: "25°C", humid: "67%", moisture: "66%", disease: "ไม่เป็นโรค" },
+      { id: "0008", temp: "25°C", humid: "67%", moisture: "66%", disease: "เป็นโรค" },
+      { id: "0009", temp: "36°C", humid: "87%", moisture: "66%", disease: "ไม่เป็นโรค" },
+      { id: "0010", temp: "25°C", humid: "89%", moisture: "66%", disease: "เป็นโรคใบจุดตากบ" },
+      { id: "0011", temp: "25°C", humid: "67%", moisture: "66%", disease: "ไม่เป็นโรค" },
+      { id: "0012", temp: "25°C", humid: "67%", moisture: "66%", disease: "เป็นโรคใบหยิก" }
+    ]
+  }
+];
