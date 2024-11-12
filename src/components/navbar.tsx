@@ -4,8 +4,9 @@ import React, { useState } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import { useDate } from './DataContext';
-import { NotificationItem, data } from '../eachIdData';
+import { NotificationItem, data } from '../app/eachIdData';
 import Notification from './notification';
+import Link from 'next/link';
 
 function NavBar() {
   const [showCalendar, setShowCalendar] = useState(false);
@@ -43,10 +44,12 @@ function NavBar() {
 
   return (
     <div className="flex items-center justify-between w-full px-5 py-3 h-16 shadow-md sticky top-0 z-50 bg-white">
-      <div className="flex items-center gap-3">
+      <Link 
+        href="/"
+        className="flex items-center gap-3">
         <img src="LPKNicon2.png" alt="LPKN Icon" className="w-26 h-10 cursor-pointer" />
         <h1 className="text-lg font-semibold text-gray-800 cursor-pointer">LPKN</h1>
-      </div>
+      </Link>
       <div className="flex items-center gap-3 relative">
         <button className="flex justify-center items-center w-10 h-10 border border-gray-400 rounded-full cursor-pointer" onClick={toggleCalendar}>
           <img src="schedule.png" alt="calendar icon" className="w-6 h-6" />

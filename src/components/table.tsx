@@ -1,6 +1,7 @@
 import { useState } from "react";
 import PopupAddID from "./popupAddID";
 import PopUpDelete from "./popUpDelete";
+import Link from "next/link";
 
 const initialData = [
     { id: "0001", temp: "25°C", humid: "67%", moisture: "66%", disease: "ไม่เป็นโรค" },
@@ -116,9 +117,13 @@ function Table() {
                     </tr>
                 </thead>
                 <tbody>
-                    {currentRows.map((row, index) => (
-                        <tr key={index} className="border-b border-gray-200">
-                            <td className="py-3 px-4 text-gray-700">{row.id}</td>
+                    {currentRows.map((row) => (
+                        <tr key={row.id} className="border-b border-gray-200">
+                            <td className="py-3 px-4 text-gray-700">
+                            <Link href={`/detail/${row.id}`}>
+                                    {row.id}
+                            </Link>
+                            </td>
                             <td className={`py-3 px-4 ${row.temp === "36°C" ? "text-red-500 font-semibold" : "text-green-500 font-semibold"}`}>{row.temp}</td>
                             <td className={`py-3 px-4 ${row.humid === "89%" ? "text-red-500 font-semibold" : "text-green-500 font-semibold"}`}>{row.humid}</td>
                             <td className={`py-3 px-4 ${row.moisture === "91%" ? "text-red-500 font-semibold" : "text-green-500 font-semibold"}`}>{row.moisture}</td>
@@ -127,6 +132,7 @@ function Table() {
                         </tr>
                     ))}
                 </tbody>
+
             </table>
 
             {filteredData.length > 10 && (

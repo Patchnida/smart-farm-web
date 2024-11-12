@@ -1,9 +1,9 @@
 'use client';
 
 import React, { useState, useEffect } from "react";
-import { useDate } from "./components/DataContext";
-import Graph from "./components/graph";
-import Table from "./components/table";
+import { useDate } from "../components/DataContext";
+import Graph from "../components/graph";
+import Table from "../components/table";
 
 export default function Home() {
   const { selectedDate, setSelectedDate } = useDate();
