@@ -212,3 +212,27 @@ export const initialData = [
     ]
   }
 ];
+
+
+export const historyData = [
+  {
+    id: "0001",
+    history: [
+      {
+        date: "2022-10-23",
+        time: "00.00",
+        status: "ปกติ",
+
+        image: "https://medthai.com/wp-content/uploads/2014/08/%E0%B8%95%E0%B9%89%E0%B8%99%E0%B8%9E%E0%B8%A3%E0%B8%B4%E0%B8%81%E0%B8%82%E0%B8%B5%E0%B9%89%E0%B8%AB%E0%B8%99%E0%B8%B9.jpg",
+        recomment: "-",
+      },
+      {
+        date: "2022-10-24",
+        time: "12.00",
+        status: "เป็นโรคใบจุดตากบ",
+        image: "https://www.opsmoac.go.th/data/warning/l/630900000832.jpg",
+        recomment: "ใช้สารประเภทคลอโรธาโรนิล (chlorothalonil) ฉีด พ่นสม่าเสมอขณะระบาด จะได้ผลดี",
+      },
+    ]
+  }
+];

@@ -6,10 +6,12 @@ import { initialData } from "@/app/eachIdData";
 import Link from "next/link";
 import Button from '@mui/material/Button';
 import PopupDisease from "@/components/popUpDisease";
+import { historyData } from './../../eachIdData';
 
 function Detail() {
     const { id } = useParams(); 
     const [isPopupOpen, setIsPopupOpen] = useState(false);
+    const [searchDate, setSearchDate] = useState("");
 
     if (!id || !initialData[0]) return <p>ข้อมูลไม่พบสำหรับ ID นี้</p>;
 
@@ -40,20 +42,11 @@ function Detail() {
     const handleOpenPopup = () => setIsPopupOpen(true);
     const handleClosePopup = () => setIsPopupOpen(false);
 
-    const historyData = [
-        {
-            date: "2022-10-23",
-            status: "ปกติ",
-            disease: "ไม่มีโรค",
-            image: "/path/to/image1.png",
-        },
-        {
-            date: "2022-10-24",
-            status: "เป็นโรค",
-            disease: "จุดใบจุด",
-            image: "/path/to/image2.png",
-        },
-    ];
+    const currentHistory = historyData.find(data => data.id === id)?.history || [];
+
+    const filteredHistory = currentHistory.filter(record => 
+        formatDateToThai(record.date).includes(searchDate)
+    );
 
     return (
         <div className="grid grid-rows-[20px_1fr_20px] h-full">      
@@ -133,11 +126,7 @@ function Detail() {
                                 <img src="/diseaseIcon.png" alt="Disease Icon" className="w-fit h-fit cursor-pointer" />
                             </div>
                             <p>คำแนะนำ : ใช้สารประเภทคลอโรธาโรนิล (chlorothalonil) ฉีด พ่นสม่าเสมอขณะระบาด จะได้ผลดี</p>
-                            <div className="flex justify-between mt-2">
-                                <Button
-                                    className='my-2 px-5 text-white bg-green-600 hover:bg-green-700 hover:text-white'    
-                                >ถ่ายรูป
-                                </Button>
+                            <div className="flex justify-end mt-2">
                                 <Button
                                 onClick={handleOpenPopup}
                                 className='my-2 px-5 bg-gray-100 hover:bg-gray-200'    
@@ -210,20 +199,41 @@ function Detail() {
                 </div>
             </div>
 
-            <PopupDisease isOpen={isPopupOpen} onClose={handleClosePopup} onSave={() => {}}>
-                <div className="flex flex-col">
-                    {historyData.map((record, index) => (
-                        <div key={index} className="border-b p-4">
-                            <p className="text-gray-500">{record.date}</p>
-                            <p className={`${record.status === "ปกติ" ? "text-green-500" : "text-red-500"}`}>
-                                {record.status}
-                            </p>
-                            <p>{record.disease}</p>
-                            <img src={record.image} alt="Disease image" className="w-full h-auto mt-2" />
-                        </div>
-                    ))}
+            <PopupDisease isOpen={isPopupOpen} onClose={handleClosePopup}>
+                <div className="flex flex-col max-h-96 overflow-y-auto">
+                    <div className="mb-4">
+                        <input
+                            type="text"
+                            value={searchDate}
+                            onChange={(e) => setSearchDate(e.target.value)}
+                            placeholder="Search by Date"
+                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 "
+                        />
+                    </div>
+                    {filteredHistory.length > 0 ? (
+                        filteredHistory.map((record, index) => (
+                            <div key={index} className="flex justify-between border gap-5 p-5">
+                                <div className="w-6/12 h-full">
+                                    <p className="mb-2 text-2xl font-semibold">{formatDateToThai(record.date)}</p>
+                                    <p className="mb-2 text-sky-700">เวลา {record.time} น.</p>
+                                    <div className="w-full h-full mb-2 py-10">
+                                        <p className={`${record.status === "ปกติ" ? "text-green-500" : "text-red-500"} text-center text-2xl font-semibold`}>
+                                            {record.status}
+                                        </p>
+                                    </div>
+                                    <p>คำแนะนำ : {record.recomment}</p>
+                                </div>
+                                <div className="w-6/12 h-full">
+                                    <img src={record.image} alt="Disease image" className="w-full h-auto" />
+                                </div>
+                            </div>
+                        ))
+                    ) : (
+                        <p className="text-gray-500">ไม่มีข้อมูลประวัติย้อนหลัง</p>
+                    )}
                 </div>
             </PopupDisease>
+
 
         </div>
     );
