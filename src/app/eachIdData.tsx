@@ -197,18 +197,18 @@ export const initialData = [
     date: "Wednesday, October 25, 2024",
     time: "12.00",
     detail: [
-      { id: "0001", temp: "33°C", humid: "67%", moisture: "66%", disease: "เป็นโรคใบจุดตากบ" },
-      { id: "0002", temp: "25°C", humid: "67%", moisture: "66%", disease: "ไม่เป็นโรค" },
-      { id: "0003", temp: "25°C", humid: "67%", moisture: "91%", disease: "ไม่เป็นโรค" },
-      { id: "0004", temp: "25°C", humid: "67%", moisture: "66%", disease: "ไม่เป็นโรค" },
-      { id: "0005", temp: "36°C", humid: "87%", moisture: "66%", disease: "ไม่เป็นโรค" },
-      { id: "0006", temp: "25°C", humid: "89%", moisture: "66%", disease: "เป็นโรคใบหยิก" },
-      { id: "0007", temp: "25°C", humid: "67%", moisture: "66%", disease: "ไม่เป็นโรค" },
-      { id: "0008", temp: "25°C", humid: "67%", moisture: "66%", disease: "เป็นโรค" },
-      { id: "0009", temp: "36°C", humid: "87%", moisture: "66%", disease: "ไม่เป็นโรค" },
-      { id: "0010", temp: "25°C", humid: "89%", moisture: "66%", disease: "เป็นโรคใบจุดตากบ" },
-      { id: "0011", temp: "25°C", humid: "67%", moisture: "66%", disease: "ไม่เป็นโรค" },
-      { id: "0012", temp: "25°C", humid: "67%", moisture: "66%", disease: "เป็นโรคใบหยิก" }
+      { id: "0001", temp: "33°C", humid: "67%", moisture: "66%", disease: "เป็นโรคใบจุดตากบ", npk: { nitrogen: 150, phosphorus: 3, potassium: 220 } },
+      { id: "0002", temp: "25°C", humid: "67%", moisture: "66%", disease: "ไม่เป็นโรค", npk: { nitrogen: 150, phosphorus: 3, potassium: 220 } },
+      { id: "0003", temp: "25°C", humid: "67%", moisture: "91%", disease: "ไม่เป็นโรค", npk: { nitrogen: 150, phosphorus: 3, potassium: 220 } },
+      { id: "0004", temp: "25°C", humid: "67%", moisture: "66%", disease: "ไม่เป็นโรค", npk: { nitrogen: 150, phosphorus: 3, potassium: 220 } },
+      { id: "0005", temp: "36°C", humid: "87%", moisture: "66%", disease: "ไม่เป็นโรค", npk: { nitrogen: 150, phosphorus: 3, potassium: 220 } },
+      { id: "0006", temp: "25°C", humid: "89%", moisture: "66%", disease: "เป็นโรคใบหยิก", npk: { nitrogen: 150, phosphorus: 3, potassium: 220 } },
+      { id: "0007", temp: "25°C", humid: "67%", moisture: "66%", disease: "ไม่เป็นโรค", npk: { nitrogen: 150, phosphorus: 3, potassium: 220 } },
+      { id: "0008", temp: "25°C", humid: "67%", moisture: "66%", disease: "เป็นโรค", npk: { nitrogen: 150, phosphorus: 3, potassium: 220 } },
+      { id: "0009", temp: "36°C", humid: "87%", moisture: "66%", disease: "ไม่เป็นโรค", npk: { nitrogen: 150, phosphorus: 3, potassium: 220 } },
+      { id: "0010", temp: "25°C", humid: "89%", moisture: "66%", disease: "เป็นโรคใบจุดตากบ", npk: { nitrogen: 150, phosphorus: 3, potassium: 220 } },
+      { id: "0011", temp: "25°C", humid: "67%", moisture: "66%", disease: "ไม่เป็นโรค", npk: { nitrogen: 150, phosphorus: 3, potassium: 220 } },
+      { id: "0012", temp: "25°C", humid: "67%", moisture: "66%", disease: "เป็นโรคใบหยิก", npk: { nitrogen: 150, phosphorus: 3, potassium: 220 } }
     ]
   }
 ];

@@ -145,7 +145,68 @@ function Detail() {
                                 </Button>
                             </div>
                         </div>
-                    </div>
+
+                        <div className="flex flex-col w-full md:w-[48%] bg-white border border-gray-200 rounded-lg shadow-md p-10 text-lg flex-grow min-h-[250px]">
+                            
+                            
+                            <div className="flex justify-between w-full">
+                                
+                                <div className="flex flex-col w-full lg:w-10/12">
+                                    <p className="text-2xl font-bold mb-2">ธาตุอาหารหลัก NPK</p>
+                                    
+                                    <div className="flex flex-col gap-5 lg:flex-row mt-5 ">
+
+                                        {/* ค่าไนโตรเจน */}
+                                        <div className="flex flex-col w-full lg:w-4/12">
+                                            <p className="font-bold">ค่าไนโตรเจน (N)</p>
+                                            <p>ควรอยู่ระหว่าง 50 – 200 มก./ล.</p>
+                                            
+
+                                            <p className="my-5">ค่าปัจจุบัน 
+                                                <span className="text-3xl font-semibold ml-10">{detailData.npk.nitrogen} มก./ล.</span>
+                                            </p>
+                                            <p>สถานะ : ปกติ</p>
+
+                                            <p className="mt-2">คำแนะนำ : -</p>
+                                        </div>
+
+                                        {/* ค่าฟอสฟอรัส */}
+                                        <div className="flex flex-col w-full lg:w-4/12">
+                                            <p className="font-bold">ค่าฟอสฟอรัส (P)</p>
+                                            <p>ควรอยู่ระหว่าง 4 – 14 มก./ล.</p>
+                                            
+
+                                            <p className="my-5">ค่าปัจจุบัน 
+                                                <span className="text-3xl font-semibold ml-10">{detailData.npk.phosphorus} มก./ล.</span>
+                                            </p>
+                                            <p>สถานะ : น้อยเกิน</p>
+
+                                            <p className="mt-2">คำแนะนำ : ใช้ปุ๋ยที่มีฟอสฟอรัสสูง เช่น ปุ๋ยสูตร 16-20-0 หรือปุ๋ยอินทรีย์ที่มีปริมาณฟอสฟอรัสสูง</p>
+                                        </div>
+
+                                        <div className="flex flex-col w-full lg:w-4/12">
+                                            <p className="font-bold">ค่าโพแทสเซียม (K)</p>
+                                            <p>ควรอยู่ระหว่าง 50 – 200 มก./ล.</p>
+
+                                            <p className="my-5">ค่าปัจจุบัน 
+                                                <span className="text-3xl font-semibold ml-10">{detailData.npk.potassium} มก./ล.</span>
+                                            </p>
+                                            <p>สถานะ : มากเกิน</p>
+
+                                            <p className="mt-2">คำแนะนำ : ควรใช้น้ำปรับสมดุลหรือปุ๋ยที่มีโพแทสเซียมต่ำ</p>
+                                        </div>
+
+                                    </div>
+                                    
+                                </div>
+                                
+
+                                <img src="/npkIcon.png" alt="Moisture Icon" className="w-fit h-fit cursor-pointer lg:self-center" />
+                            </div>
+                            
+                        </div> 
+                            
+                        </div>
                 </div>
             </div>
 
