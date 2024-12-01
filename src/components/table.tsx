@@ -98,15 +98,27 @@ function Table() {
                     </button>
                 </div>
             </div>
-            <table className="min-w-full bg-white border border-gray-200">
+            <table className="w-full bg-white border border-gray-200 text-center">
                 <thead>
                     <tr className="bg-gray-100 border-b border-gray-200">
-                        <th className="py-3 px-4 text-left font-semibold text-gray-600">ID</th>
-                        <th className="py-3 px-4 text-left font-semibold text-gray-600">อุณหภูมิ</th>
-                        <th className="py-3 px-4 text-left font-semibold text-gray-600">ความชื้นในอากาศ</th>
-                        <th className="py-3 px-4 text-left font-semibold text-gray-600">ความชื้นในดิน</th>
-                        <th className="py-3 px-4 text-left font-semibold text-gray-600">ความเสี่ยงในการเกิดโรค</th>
-                        <th className="py-3 px-4 text-left font-semibold text-gray-600"></th>
+                        <th className="py-3 px-4 font-semibold text-gray-600">ID</th>
+                        <th className="py-3 px-4 font-semibold text-gray-600">อุณหภูมิ</th>
+                        <th className="py-3 px-4 font-semibold text-gray-600">ความชื้นในอากาศ</th>
+                        <th className="py-3 px-4 font-semibold text-gray-600">ความชื้นในดิน</th>
+                        <th className="py-3 px-4 font-semibold text-gray-600">ความเสี่ยงในการเกิดโรค</th>
+                        <th className="py-3 px-4 font-semibold text-gray-600">
+                            <p>ธาตุอาหารหลัก npk</p>
+                            ค่าไนโตรเจน (N)
+                        </th>
+                        <th className="py-3 px-4 font-semibold text-gray-600">
+                            <p>ธาตุอาหารหลัก npk</p>
+                            ค่าฟอสฟอรัส (P)
+                        </th>
+                        <th className="py-3 px-4 font-semibold text-gray-600">
+                            <p>ธาตุอาหารหลัก npk</p>
+                            ค่าโพแทสเซียม (K)
+                        </th>
+                        <th className="py-3 px-4 font-semibold text-gray-600"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -121,6 +133,9 @@ function Table() {
                             <td className={`py-3 px-4 ${row.humid === "89%" ? "text-red-500 font-semibold" : "text-green-500 font-semibold"}`}>{row.humid}</td>
                             <td className={`py-3 px-4 ${row.moisture === "91%" ? "text-red-500 font-semibold" : "text-green-500 font-semibold"}`}>{row.moisture}</td>
                             <td className={`py-3 px-4 ${row.disease === "เป็นโรค" ? "text-red-500 font-semibold" : "text-green-500 font-semibold"}`}>{row.disease}</td>
+                            <td className={`py-3 px-4 ${row.humid === "89%" ? "text-red-500 font-semibold" : "text-green-500 font-semibold"}`}>{row.npk.nitrogen}</td>
+                            <td className={`py-3 px-4 ${row.moisture === "91%" ? "text-red-500 font-semibold" : "text-green-500 font-semibold"}`}>{row.npk.phosphorus}</td>
+                            <td className={`py-3 px-4 ${row.disease === "เป็นโรค" ? "text-red-500 font-semibold" : "text-green-500 font-semibold"}`}>{row.npk.potassium}</td>
                             <td className="py-3 px-4 text-red-500 font-semibold cursor-pointer hover:underline" onClick={() => openDeletePopup(row.id)}>ลบ</td>
                         </tr>
                     ))}

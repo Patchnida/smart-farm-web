@@ -120,7 +120,7 @@ function Detail() {
                             <div className="flex justify-between w-full">
                                 <div className="flex flex-col gap-2 w-8/12 mb-5">
                                     <p className="text-2xl font-bold">การเกิดโรค</p>
-                                    <p>ตรวจสอบการเกิดโรค 4 โรค ได้แก่ โรคใบจุดตากบ โรคใบหยิก เพลี้ยลง</p>
+                                    <p>ตรวจสอบการเกิดโรค 4 โรค ได้แก่ โรคใบเหลือง โรคใบม้วน โรคใบจุดตากบ และแมลงหวี่ขาว</p>
                                     <span className="text-3xl font-semibold my-5 self-center">{detailData.disease}</span>
                                 </div>
                                 <img src="/diseaseIcon.png" alt="Disease Icon" className="w-fit h-fit cursor-pointer" />
