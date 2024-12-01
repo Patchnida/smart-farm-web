@@ -129,13 +129,65 @@ function Table() {
                                     {row.id}
                                 </Link>
                             </td>
-                            <td className={`py-3 px-4 ${row.temp === "36°C" ? "text-red-500 font-semibold" : "text-green-500 font-semibold"}`}>{row.temp}</td>
-                            <td className={`py-3 px-4 ${row.humid === "89%" ? "text-red-500 font-semibold" : "text-green-500 font-semibold"}`}>{row.humid}</td>
-                            <td className={`py-3 px-4 ${row.moisture === "91%" ? "text-red-500 font-semibold" : "text-green-500 font-semibold"}`}>{row.moisture}</td>
-                            <td className={`py-3 px-4 ${row.disease === "เป็นโรค" ? "text-red-500 font-semibold" : "text-green-500 font-semibold"}`}>{row.disease}</td>
-                            <td className={`py-3 px-4 ${row.humid === "89%" ? "text-red-500 font-semibold" : "text-green-500 font-semibold"}`}>{row.npk.nitrogen}</td>
-                            <td className={`py-3 px-4 ${row.moisture === "91%" ? "text-red-500 font-semibold" : "text-green-500 font-semibold"}`}>{row.npk.phosphorus}</td>
-                            <td className={`py-3 px-4 ${row.disease === "เป็นโรค" ? "text-red-500 font-semibold" : "text-green-500 font-semibold"}`}>{row.npk.potassium}</td>
+                            
+                            <td
+                                className={`py-3 px-4 ${
+                                    parseFloat(row.temp) < 20 || parseFloat(row.temp) > 30
+                                        ? "text-red-500 font-semibold"
+                                        : "text-green-500 font-semibold"
+                                }`}
+                            >
+                                {row.temp} °C
+                            </td>
+                            
+                            <td
+                                className={`py-3 px-4 ${
+                                    parseFloat(row.humid) < 60 || parseFloat(row.humid) > 80
+                                        ? "text-red-500 font-semibold"
+                                        : "text-green-500 font-semibold"
+                                }`}
+                            >
+                                {row.humid} %
+                            </td>
+                            
+                            <td 
+                                className={`py-3 px-4 ${
+                                    parseFloat(row.moisture) < 60 || parseFloat(row.moisture) > 70
+                                        ? "text-red-500 font-semibold"
+                                        : "text-green-500 font-semibold"
+                                }`}
+                            >
+                                {row.moisture} %
+                            </td>
+
+                            <td
+                                className={`py-3 px-4 ${
+                                    row.disease.startsWith("เป็นโรค") ? "text-red-500 font-semibold" : "text-green-500 font-semibold"
+                                }`}
+                            >
+                                {row.disease}
+                            </td>
+                            
+                            <td 
+                                className={`py-3 px-4 ${
+                                    row.npk.nitrogen < 50 || row.npk.nitrogen > 200 ? "text-red-500 font-semibold" : "text-green-500 font-semibold"}`}
+                            >
+                                {row.npk.nitrogen} มก./ล.
+                            </td>
+                            
+                            <td 
+                                className={`py-3 px-4 ${
+                                    row.npk.phosphorus < 4 || row.npk.phosphorus > 14 ? "text-red-500 font-semibold" : "text-green-500 font-semibold"}`}
+                            >
+                                {row.npk.phosphorus} มก./ล.
+                            </td>
+                            
+                            <td className={`py-3 px-4 ${
+                                row.npk.potassium < 50 || row.npk.potassium > 200 ? "text-red-500 font-semibold" : "text-green-500 font-semibold"}`}
+                            >
+                                {row.npk.potassium} มก./ล.
+                            </td>
+                            
                             <td className="py-3 px-4 text-red-500 font-semibold cursor-pointer hover:underline" onClick={() => openDeletePopup(row.id)}>ลบ</td>
                         </tr>
                     ))}

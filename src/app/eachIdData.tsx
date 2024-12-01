@@ -197,18 +197,18 @@ export const initialData = [
     date: "Wednesday, October 25, 2024",
     time: "00.00",
     detail: [
-      { id: "0001", temp: "24°C", humid: "70%", moisture: "68%", disease: "เป็นโรคใบจุดตากบ", npk: { nitrogen: 150, phosphorus: 3, potassium: 220 } },
-      { id: "0002", temp: "22°C", humid: "72%", moisture: "70%", disease: "ไม่เป็นโรค", npk: { nitrogen: 150, phosphorus: 3, potassium: 220 } },
-      { id: "0003", temp: "23°C", humid: "75%", moisture: "73%", disease: "ไม่เป็นโรค", npk: { nitrogen: 150, phosphorus: 3, potassium: 220 } },
-      { id: "0004", temp: "21°C", humid: "71%", moisture: "69%", disease: "ไม่เป็นโรค", npk: { nitrogen: 150, phosphorus: 3, potassium: 220 } },
-      { id: "0005", temp: "26°C", humid: "77%", moisture: "71%", disease: "ไม่เป็นโรค", npk: { nitrogen: 150, phosphorus: 3, potassium: 220 } },
-      { id: "0006", temp: "23°C", humid: "74%", moisture: "67%", disease: "เป็นโรคใบหยิก", npk: { nitrogen: 150, phosphorus: 3, potassium: 220 } },
-      { id: "0007", temp: "22°C", humid: "72%", moisture: "68%", disease: "ไม่เป็นโรค", npk: { nitrogen: 150, phosphorus: 3, potassium: 220 } },
-      { id: "0008", temp: "24°C", humid: "70%", moisture: "69%", disease: "เป็นโรค", npk: { nitrogen: 150, phosphorus: 3, potassium: 220 } },
-      { id: "0009", temp: "25°C", humid: "76%", moisture: "70%", disease: "ไม่เป็นโรค", npk: { nitrogen: 150, phosphorus: 3, potassium: 220 } },
-      { id: "0010", temp: "23°C", humid: "74%", moisture: "67%", disease: "เป็นโรคใบจุดตากบ", npk: { nitrogen: 150, phosphorus: 3, potassium: 220 } },
-      { id: "0011", temp: "22°C", humid: "72%", moisture: "68%", disease: "ไม่เป็นโรค", npk: { nitrogen: 150, phosphorus: 3, potassium: 220 } },
-      { id: "0012", temp: "24°C", humid: "73%", moisture: "69%", disease: "เป็นโรคใบหยิก", npk: { nitrogen: 150, phosphorus: 3, potassium: 220 } }
+      { id: "0001", temp: "19", humid: "69", moisture: "68", disease: "เป็นโรคใบจุดตากบ", npk: { nitrogen: 49, phosphorus: 3, potassium: 49 } },
+      { id: "0002", temp: "20", humid: "60", moisture: "60", disease: "ไม่เป็นโรค", npk: { nitrogen: 50, phosphorus: 4, potassium: 50 } },
+      { id: "0003", temp: "30", humid: "80", moisture: "70", disease: "ไม่เป็นโรค", npk: { nitrogen: 60, phosphorus: 5, potassium: 80 } },
+      { id: "0004", temp: "31", humid: "71", moisture: "69", disease: "ไม่เป็นโรค", npk: { nitrogen: 100, phosphorus: 8, potassium: 100 } },
+      { id: "0005", temp: "26", humid: "59", moisture: "71", disease: "ไม่เป็นโรค", npk: { nitrogen: 150, phosphorus: 10, potassium: 160 } },
+      { id: "0006", temp: "23", humid: "74", moisture: "67", disease: "เป็นโรคใบหยิก", npk: { nitrogen: 200, phosphorus: 12, potassium: 200 } },
+      { id: "0007", temp: "22", humid: "72", moisture: "68", disease: "ไม่เป็นโรค", npk: { nitrogen: 210, phosphorus: 14, potassium: 220 } },
+      { id: "0008", temp: "24", humid: "70", moisture: "69", disease: "เป็นโรค", npk: { nitrogen: 150, phosphorus: 16, potassium: 220 } },
+      { id: "0009", temp: "25", humid: "76", moisture: "70", disease: "ไม่เป็นโรค", npk: { nitrogen: 150, phosphorus: 3, potassium: 220 } },
+      { id: "0010", temp: "23", humid: "74", moisture: "67", disease: "เป็นโรคใบจุดตากบ", npk: { nitrogen: 150, phosphorus: 3, potassium: 220 } },
+      { id: "0011", temp: "22", humid: "72", moisture: "68", disease: "ไม่เป็นโรค", npk: { nitrogen: 150, phosphorus: 3, potassium: 220 } },
+      { id: "0012", temp: "24", humid: "73", moisture: "69", disease: "เป็นโรคใบหยิก", npk: { nitrogen: 150, phosphorus: 3, potassium: 220 } }
     ]
   },
   {
