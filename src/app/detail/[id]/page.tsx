@@ -2,14 +2,16 @@
 
 import React, { useState } from "react";
 import { useParams } from "next/navigation";
+import { useDate } from "@/components/DataContext";
 import { initialData } from "@/app/eachIdData";
 import Link from "next/link";
 import Button from '@mui/material/Button';
 import PopupDisease from "@/components/popUpDisease";
 import { historyData } from './../../eachIdData';
 
-function Detail() {
-    const { id } = useParams(); 
+const Detail: React.FC = () => {
+    const { id } = useParams();
+    const { selectedTime } = useDate(); // Access selectedTime from context
     const [isPopupOpen, setIsPopupOpen] = useState(false);
     const [searchDate, setSearchDate] = useState("");
 
@@ -57,7 +59,7 @@ function Detail() {
                             {formatDateToThai(initialData[0].date)}
                         </p>
                         <p className="text-2xl font-medium text-sky-700">
-                            เวลา {initialData[0].time} น.
+                            เวลา {selectedTime} น.
                         </p>
                    </div>
                     <p className="font-semibold text-lg mt-2">ID {detailData.id}</p>

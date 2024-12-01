@@ -24,18 +24,8 @@ const flattenData = (data: typeof initialData, selectedTime: string) => {
     }));
 };
 
-const getDefaultTimeOption = (): string => {
-    const currentHour = new Date().getHours();
-    if (currentHour >= 0 && currentHour < 6) return '00.00';
-    if (currentHour >= 6 && currentHour < 12) return '06.00';
-    if (currentHour >= 12 && currentHour < 18) return '12.00';
-    if (currentHour >= 18 && currentHour < 24) return '18.00';
-    return '00.00';
-};
-
-function Graph() {
+function Graph({ selectedTime, setSelectedTime }: { selectedTime: string; setSelectedTime: (time: string) => void }) {
     const [dataType, setDataType] = useState<string>('temp');
-    const [selectedTime, setSelectedTime] = useState<string>(getDefaultTimeOption());
     const [data, setData] = useState([]);
 
     useEffect(() => {
