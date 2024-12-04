@@ -1,200 +1,6 @@
-import { time } from "console";
-
-export interface NotificationItem {
-  dateTime: string;
-  detail: Array<{
-    id: string;
-    icons: Array<{ src: string, alt: string }>;
-    timeAgo: string;
-    read: boolean;
-  }>
-}
-
-export const data: NotificationItem[] = [
-  {
-    dateTime: "2024-11-10T09:00:00Z",
-    detail: [
-      {
-        id: "0001",
-        icons: [
-          { src: "temIcon.png", alt: "Temperature Icon" },
-          { src: "diseaseIcon.png", alt: "Disease Icon" }
-        ],
-        timeAgo: "ตอนนี้",
-        read: false
-      }
-    ]
-  },
-  {
-    dateTime: "2024-11-10T09:05:00Z",
-    detail: [
-      {
-        id: "0002",
-        icons: [
-          { src: "temIcon.png", alt: "Temperature Icon" },
-          { src: "humidIcon.png", alt: "Humidity Icon" },
-          { src: "moisIcon.png", alt: "Moisture Icon" },
-          { src: "diseaseIcon.png", alt: "Disease Icon" }
-        ],
-        timeAgo: "ตอนนี้",
-        read: false
-      }
-    ]
-  },
-  {
-    dateTime: "2024-11-10T09:10:00Z",
-    detail: [
-      {
-        id: "0003",
-        icons: [
-          { src: "humidIcon.png", alt: "Humidity Icon" }
-        ],
-        timeAgo: "ตอนนี้",
-        read: true
-      }
-    ]
-  },
-  {
-    dateTime: "2024-11-09T15:00:00Z",
-    detail: [
-      {
-        id: "0004",
-        icons: [
-          { src: "temIcon.png", alt: "Temperature Icon" },
-          { src: "diseaseIcon.png", alt: "Disease Icon" }
-        ],
-        timeAgo: "4 ชั่วโมงที่แล้ว",
-        read: true
-      }
-    ]
-  },
-  {
-    dateTime: "2024-11-09T15:05:00Z",
-    detail: [
-      {
-        id: "0005",
-        icons: [
-          { src: "temIcon.png", alt: "Temperature Icon" },
-          { src: "humidIcon.png", alt: "Humidity Icon" },
-          { src: "moisIcon.png", alt: "Moisture Icon" },
-          { src: "diseaseIcon.png", alt: "Disease Icon" }
-        ],
-        timeAgo: "4 ชั่วโมงที่แล้ว",
-        read: true
-      }
-    ]
-  },
-  {
-    dateTime: "2024-11-09T15:10:00Z",
-    detail: [
-      {
-        id: "0006",
-        icons: [
-          { src: "humidIcon.png", alt: "Humidity Icon" }
-        ],
-        timeAgo: "4 ชั่วโมงที่แล้ว",
-        read: true
-      }
-    ]
-  },
-  {
-    dateTime: "2024-11-10T09:15:00Z",
-    detail: [
-      {
-        id: "0007",
-        icons: [
-          { src: "temIcon.png", alt: "Temperature Icon" },
-          { src: "diseaseIcon.png", alt: "Disease Icon" }
-        ],
-        timeAgo: "4 ชั่วโมงที่แล้ว",
-        read: false
-      }
-    ]
-  },
-  {
-    dateTime: "2024-11-10T09:20:00Z",
-    detail: [
-      {
-        id: "0008",
-        icons: [
-          { src: "temIcon.png", alt: "Temperature Icon" },
-          { src: "humidIcon.png", alt: "Humidity Icon" },
-          { src: "moisIcon.png", alt: "Moisture Icon" },
-          { src: "diseaseIcon.png", alt: "Disease Icon" }
-        ],
-        timeAgo: "4 ชั่วโมงที่แล้ว",
-        read: false
-      }
-    ]
-  },
-  {
-    dateTime: "2024-11-10T09:25:00Z",
-    detail: [
-      {
-        id: "0009",
-        icons: [
-          { src: "humidIcon.png", alt: "Humidity Icon" }
-        ],
-        timeAgo: "4 ชั่วโมงที่แล้ว",
-        read: true
-      }
-    ]
-  },
-  {
-    dateTime: "2024-11-09T15:15:00Z",
-    detail: [
-      {
-        id: "0010",
-        icons: [
-          { src: "temIcon.png", alt: "Temperature Icon" },
-          { src: "diseaseIcon.png", alt: "Disease Icon" }
-        ],
-        timeAgo: "8 ชั่วโมงที่แล้ว",
-        read: true
-      }
-    ]
-  },
-  {
-    dateTime: "2024-11-09T15:20:00Z",
-    detail: [
-      {
-        id: "0011",
-        icons: [
-          { src: "temIcon.png", alt: "Temperature Icon" },
-          { src: "humidIcon.png", alt: "Humidity Icon" },
-          { src: "moisIcon.png", alt: "Moisture Icon" },
-          { src: "diseaseIcon.png", alt: "Disease Icon" }
-        ],
-        timeAgo: "8 ชั่วโมงที่แล้ว",
-        read: true
-      }
-    ]
-  },
-  {
-    dateTime: "2024-11-09T15:25:00Z",
-    detail: [
-      {
-        id: "0012",
-        icons: [
-          { src: "humidIcon.png", alt: "Humidity Icon" }
-        ],
-        timeAgo: "8 ชั่วโมงที่แล้ว",
-        read: true
-      }
-    ]
-  }
-];
-
-export const icons = [
-  { src: "temIcon.png", alt: "Temperature Icon" },
-  { src: "humidIcon.png", alt: "Humidity Icon" },
-  { src: "moisIcon.png", alt: "Moisture Icon" },
-  { src: "diseaseIcon.png", alt: "Disease Icon" }
-];
-
 export const initialData = [
   {
-    date: "Wednesday, October 25, 2024",
+    date: "Wednesday, December 4, 2024",
     time: "00.00",
     detail: [
       { id: "0001", temp: "20", humid: "60", moisture: "59", disease: "เป็นโรคใบจุดตากบ", npk: { nitrogen: 201, phosphorus: 10, potassium: 78 } },
@@ -212,7 +18,7 @@ export const initialData = [
     ]
   },
   {
-    date: "Wednesday, October 25, 2024",
+    date: "Wednesday, December 4, 2024",
     time: "06.00",
     detail: [
       { id: "0001", temp: "26°C", humid: "65%", moisture: "67%", disease: "เป็นโรคใบจุดตากบ", npk: { nitrogen: 150, phosphorus: 3, potassium: 220 } },
@@ -230,7 +36,7 @@ export const initialData = [
     ]
   },
   {
-    date: "Wednesday, October 25, 2024",
+    date: "Wednesday, December 4, 2024",
     time: "12.00",
     detail: [
       { id: "0001", temp: "38°C", humid: "67%", moisture: "66%", disease: "เป็นโรคใบจุดตากบ", npk: { nitrogen: 150, phosphorus: 3, potassium: 220 } },
@@ -248,7 +54,7 @@ export const initialData = [
     ]
   },
   {
-    date: "Wednesday, October 25, 2024",
+    date: "Wednesday, December 4, 2024",
     time: "18.00",
     detail: [
       { id: "0001", temp: "30°C", humid: "64%", moisture: "65%", disease: "เป็นโรคใบจุดตากบ", npk: { nitrogen: 150, phosphorus: 3, potassium: 220 } },
