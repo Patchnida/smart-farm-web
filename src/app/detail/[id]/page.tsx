@@ -8,6 +8,19 @@ import Link from "next/link";
 import Button from '@mui/material/Button';
 import PopupDisease from "@/components/popUpDisease";
 import { historyData } from './../../eachIdData';
+import { isTempOutOfRange,
+    getTempAdvice,
+    isHumidOutOfRange,
+    isMoistureOutOfRange,
+    isDiseaseDetected,
+    isNitrogenOutOfRange,
+    isPhosphorusOutOfRange,
+    isPotassiumOutOfRange,
+    getHumidAdvice,
+    getMoistureAdvice,
+    getNitrogenAdvice,
+    getPhosphorusAdvice,
+    getPotassiumAdvice, } from "@/utils/validation";
 
 const Detail: React.FC = () => {
     const { id } = useParams();
@@ -61,26 +74,36 @@ const Detail: React.FC = () => {
                         <p className="text-2xl font-medium text-sky-700">
                             เวลา {selectedTime} น.
                         </p>
-                   </div>
-                    <p className="font-semibold text-lg mt-2">ID {detailData.id}</p>
-
-                    <div className="flex flex-wrap gap-5 mt-5 h-full">
-                        {/* อุณหภูมิในดิน */}
-                        <div
-                         className="flex flex-col w-full md:w-[48%] bg-white border border-gray-200 rounded-lg shadow-md p-10 text-lg flex-grow min-h-[250px]">
-                            <div className="flex justify-between w-full">
-                                <div className="flex flex-col gap-2">
-                                    <p className="text-2xl font-bold">อุณหภูมิในดิน</p>
-                                    <p>ควรอยู่ระหว่าง 20-30 °C</p>
-                                    <p className="my-5">ค่าปัจจุบัน 
-                                        <span className="text-3xl font-semibold ml-10">{detailData.temp}</span>
-                                    </p>
-                                    <p>สถานะ : สูงกว่าเกณฑ์ที่เหมาะสม</p>
-                                </div>
-                                <img src="/temIcon.png" alt="Temperature Icon" className="w-fit h-fit cursor-pointer" />
-                            </div>
-                            <p className="mt-2">คำแนะนำ : ควรลดอุณหภูมิ</p>
                         </div>
+                            <p className="font-semibold text-lg mt-2">ID {detailData.id}</p>
+
+                            <div className="flex flex-wrap gap-5 mt-5 h-full">
+                                {/* อุณหภูมิในดิน */}
+                                <div className="flex flex-col w-full md:w-[48%] bg-white border border-gray-200 rounded-lg shadow-md p-10 text-lg flex-grow min-h-[250px]">
+                                    <div className="flex justify-between w-full">
+                                        <div className="flex flex-col gap-2">
+                                            <p className="text-2xl font-bold">อุณหภูมิในดิน</p>
+                                            <p>ควรอยู่ระหว่าง 20-30 °C</p>
+                                            <p className="my-5">
+                                                ค่าปัจจุบัน : 
+                                                <span
+                                                    className={`text-3xl font-semibold ml-10 ${
+                                                        isTempOutOfRange(parseFloat(detailData.temp))
+                                                            ? "text-red-500"
+                                                            : "text-green-500"
+                                                    }`}
+                                                >
+                                                    {detailData.temp} °C
+                                                </span>
+                                            </p>
+                                            <p className="mt-2">
+                                                คำแนะนำ : {getTempAdvice(parseFloat(detailData.temp))}
+                                            </p>
+                                        </div>
+                                        <img src="/temIcon.png" alt="Temperature Icon" className="w-fit h-fit cursor-pointer" />
+                                    </div>
+                                
+                                </div>
 
                         {/* ความชื้นในอากาศ */}
                         <div
@@ -89,14 +112,24 @@ const Detail: React.FC = () => {
                                 <div className="flex flex-col gap-2">
                                     <p className="text-2xl font-bold">ความชื้นในอากาศ</p>
                                     <p>ควรอยู่ระหว่าง 60-80 %</p>
-                                    <p className="my-5">ค่าปัจจุบัน 
-                                        <span className="text-3xl font-semibold ml-10">{detailData.humid}</span>
+                                    <p className="my-5">
+                                        ค่าปัจจุบัน : 
+                                            <span
+                                                className={`text-3xl font-semibold ml-10 ${
+                                                    isHumidOutOfRange(parseFloat(detailData.humid))
+                                                        ? "text-red-500"
+                                                        : "text-green-500"
+                                                }`}
+                                            >
+                                                {detailData.humid} %
+                                            </span>
                                     </p>
-                                    <p>สถานะ : ปกติ</p>
+                                    <p className="mt-2">
+                                        คำแนะนำ : {getHumidAdvice(parseFloat(detailData.humid))}
+                                    </p>
                                 </div>
                                 <img src="/humidIcon.png" alt="Humid Icon" className="w-fit h-fit cursor-pointer" />
                             </div>
-                            <p className="mt-2">คำแนะนำ : -</p>
                         </div>
 
                         {/* ความชื้นในดิน */}
@@ -106,14 +139,24 @@ const Detail: React.FC = () => {
                                 <div className="flex flex-col gap-2">
                                 <p className="text-2xl font-bold">ความชื้นในดิน</p>
                                 <p>ควรอยู่ระหว่าง 60-70 %</p>
-                                <p className="my-5">ค่าปัจจุบัน 
-                                    <span className="text-3xl font-semibold ml-10">{detailData.moisture}</span>
+                                <p className="my-5">
+                                    ค่าปัจจุบัน : 
+                                        <span
+                                            className={`text-3xl font-semibold ml-10 ${
+                                                isMoistureOutOfRange(parseFloat(detailData.moisture))
+                                                    ? "text-red-500"
+                                                    : "text-green-500"
+                                            }`}
+                                        >
+                                            {detailData.moisture} %
+                                        </span>
                                 </p>
-                                <p>สถานะ : ปกติ</p>
+                                <p className="mt-2">
+                                    คำแนะนำ : {getMoistureAdvice(parseFloat(detailData.moisture))}
+                                </p>
                                 </div>
                                 <img src="/moisIcon.png" alt="Moisture Icon" className="w-fit h-fit cursor-pointer" />
                             </div>
-                            <p className="mt-2">คำแนะนำ : -</p>
                         </div>
 
                         {/* ความเสี่ยงในการเป็นโรค */}
@@ -123,7 +166,17 @@ const Detail: React.FC = () => {
                                 <div className="flex flex-col gap-2 w-8/12 mb-5">
                                     <p className="text-2xl font-bold">การเกิดโรค</p>
                                     <p>ตรวจสอบการเกิดโรค 4 โรค ได้แก่ โรคใบเหลือง โรคใบม้วน โรคใบจุดตากบ และแมลงหวี่ขาว</p>
-                                    <span className="text-3xl font-semibold my-5 self-center">{detailData.disease}</span>
+                                    <div className="flex justify-center items-center my-5">
+                                        <span
+                                            className={`text-3xl font-semibold text-center ${
+                                                isDiseaseDetected(detailData.disease)
+                                                    ? "text-red-500"
+                                                    : "text-green-500"
+                                            }`}
+                                        >
+                                            {detailData.disease}
+                                        </span>
+                                    </div>
                                 </div>
                                 <img src="/diseaseIcon.png" alt="Disease Icon" className="w-fit h-fit cursor-pointer" />
                             </div>
@@ -151,40 +204,69 @@ const Detail: React.FC = () => {
                                         <div className="flex flex-col w-full lg:w-4/12">
                                             <p className="font-bold">ค่าไนโตรเจน (N)</p>
                                             <p>ควรอยู่ระหว่าง 50 – 200 มก./ล.</p>
-                                            
 
-                                            <p className="my-5">ค่าปัจจุบัน 
-                                                <span className="text-3xl font-semibold ml-10">{detailData.npk.nitrogen} มก./ล.</span>
+                                            <p className="my-5">
+                                                ค่าปัจจุบัน : 
+                                                <span
+                                                    className={`text-3xl font-semibold ml-10 ${
+                                                        isNitrogenOutOfRange(detailData.npk.nitrogen)
+                                                            ? "text-red-500"
+                                                            : "text-green-500"
+                                                    }`}
+                                                >
+                                                    {detailData.npk.nitrogen} มก./ล.
+                                                </span>
                                             </p>
-                                            <p>สถานะ : ปกติ</p>
 
-                                            <p className="mt-2">คำแนะนำ : -</p>
+                                            <p className="mt-2">
+                                                คำแนะนำ : {getNitrogenAdvice(detailData.npk.nitrogen)}
+                                            </p>
                                         </div>
+
 
                                         {/* ค่าฟอสฟอรัส */}
                                         <div className="flex flex-col w-full lg:w-4/12">
                                             <p className="font-bold">ค่าฟอสฟอรัส (P)</p>
                                             <p>ควรอยู่ระหว่าง 4 – 14 มก./ล.</p>
                                             
-
-                                            <p className="my-5">ค่าปัจจุบัน 
-                                                <span className="text-3xl font-semibold ml-10">{detailData.npk.phosphorus} มก./ล.</span>
+                                            <p className="my-5">
+                                                ค่าปัจจุบัน : 
+                                                <span
+                                                    className={`text-3xl font-semibold ml-10 ${
+                                                        isPhosphorusOutOfRange(detailData.npk.phosphorus)
+                                                            ? "text-red-500"
+                                                            : "text-green-500"
+                                                    }`}
+                                                >
+                                                    {detailData.npk.phosphorus} มก./ล.
+                                                </span>
                                             </p>
-                                            <p>สถานะ : น้อยเกิน</p>
 
-                                            <p className="mt-2">คำแนะนำ : ใช้ปุ๋ยที่มีฟอสฟอรัสสูง เช่น ปุ๋ยสูตร 16-20-0 หรือปุ๋ยอินทรีย์ที่มีปริมาณฟอสฟอรัสสูง</p>
+                                            <p className="mt-2">
+                                                คำแนะนำ : {getPhosphorusAdvice(detailData.npk.phosphorus)}
+                                            </p>
                                         </div>
 
                                         <div className="flex flex-col w-full lg:w-4/12">
                                             <p className="font-bold">ค่าโพแทสเซียม (K)</p>
                                             <p>ควรอยู่ระหว่าง 50 – 200 มก./ล.</p>
 
-                                            <p className="my-5">ค่าปัจจุบัน 
-                                                <span className="text-3xl font-semibold ml-10">{detailData.npk.potassium} มก./ล.</span>
+                                            <p className="my-5">
+                                                ค่าปัจจุบัน : 
+                                                <span
+                                                    className={`text-3xl font-semibold ml-10 ${
+                                                        isPotassiumOutOfRange(detailData.npk.potassium)
+                                                            ? "text-red-500"
+                                                            : "text-green-500"
+                                                    }`}
+                                                >
+                                                    {detailData.npk.potassium} มก./ล.
+                                                </span>
                                             </p>
-                                            <p>สถานะ : มากเกิน</p>
 
-                                            <p className="mt-2">คำแนะนำ : ควรใช้น้ำปรับสมดุลหรือปุ๋ยที่มีโพแทสเซียมต่ำ</p>
+                                            <p className="mt-2">
+                                                คำแนะนำ : {getPotassiumAdvice(detailData.npk.potassium)}
+                                            </p>
                                         </div>
 
                                     </div>

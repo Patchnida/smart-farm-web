@@ -3,6 +3,13 @@ import PopupAddID from "./popUpAddID";
 import PopUpDelete from "./popUpDelete";
 import Link from "next/link";
 import { initialData } from "@/app/eachIdData";
+import { isTempOutOfRange,
+    isHumidOutOfRange,
+    isMoistureOutOfRange,
+    isDiseaseDetected,
+    isNitrogenOutOfRange,
+    isPhosphorusOutOfRange,
+    isPotassiumOutOfRange, } from "@/utils/validation";
 
 function Table() {
     const [data, setData] = useState(initialData);
@@ -129,30 +136,30 @@ function Table() {
                                     {row.id}
                                 </Link>
                             </td>
-                            
+
                             <td
                                 className={`py-3 px-4 ${
-                                    parseFloat(row.temp) < 20 || parseFloat(row.temp) > 30
+                                    isTempOutOfRange(parseFloat(row.temp))
                                         ? "text-red-500 font-semibold"
                                         : "text-green-500 font-semibold"
                                 }`}
                             >
                                 {row.temp} °C
                             </td>
-                            
+
                             <td
                                 className={`py-3 px-4 ${
-                                    parseFloat(row.humid) < 60 || parseFloat(row.humid) > 80
+                                    isHumidOutOfRange(parseFloat(row.humid))
                                         ? "text-red-500 font-semibold"
                                         : "text-green-500 font-semibold"
                                 }`}
                             >
                                 {row.humid} %
                             </td>
-                            
-                            <td 
+
+                            <td
                                 className={`py-3 px-4 ${
-                                    parseFloat(row.moisture) < 60 || parseFloat(row.moisture) > 70
+                                    isMoistureOutOfRange(parseFloat(row.moisture))
                                         ? "text-red-500 font-semibold"
                                         : "text-green-500 font-semibold"
                                 }`}
@@ -162,36 +169,53 @@ function Table() {
 
                             <td
                                 className={`py-3 px-4 ${
-                                    row.disease.startsWith("เป็นโรค") ? "text-red-500 font-semibold" : "text-green-500 font-semibold"
+                                    isDiseaseDetected(row.disease)
+                                        ? "text-red-500 font-semibold"
+                                        : "text-green-500 font-semibold"
                                 }`}
                             >
                                 {row.disease}
                             </td>
-                            
-                            <td 
+
+                            <td
                                 className={`py-3 px-4 ${
-                                    row.npk.nitrogen < 50 || row.npk.nitrogen > 200 ? "text-red-500 font-semibold" : "text-green-500 font-semibold"}`}
+                                    isNitrogenOutOfRange(row.npk.nitrogen)
+                                        ? "text-red-500 font-semibold"
+                                        : "text-green-500 font-semibold"
+                                }`}
                             >
                                 {row.npk.nitrogen} มก./ล.
                             </td>
-                            
-                            <td 
+
+                            <td
                                 className={`py-3 px-4 ${
-                                    row.npk.phosphorus < 4 || row.npk.phosphorus > 14 ? "text-red-500 font-semibold" : "text-green-500 font-semibold"}`}
+                                    isPhosphorusOutOfRange(row.npk.phosphorus)
+                                        ? "text-red-500 font-semibold"
+                                        : "text-green-500 font-semibold"
+                                }`}
                             >
                                 {row.npk.phosphorus} มก./ล.
                             </td>
-                            
-                            <td className={`py-3 px-4 ${
-                                row.npk.potassium < 50 || row.npk.potassium > 200 ? "text-red-500 font-semibold" : "text-green-500 font-semibold"}`}
+
+                            <td
+                                className={`py-3 px-4 ${
+                                    isPotassiumOutOfRange(row.npk.potassium)
+                                        ? "text-red-500 font-semibold"
+                                        : "text-green-500 font-semibold"
+                                }`}
                             >
                                 {row.npk.potassium} มก./ล.
                             </td>
-                            
-                            <td className="py-3 px-4 text-red-500 font-semibold cursor-pointer hover:underline" onClick={() => openDeletePopup(row.id)}>ลบ</td>
+
+                            <td
+                                className="py-3 px-4 text-red-500 font-semibold cursor-pointer hover:underline"
+                                onClick={() => openDeletePopup(row.id)}
+                            >
+                                ลบ
+                            </td>
                         </tr>
                     ))}
-                </tbody>
+            </tbody>
             </table>
 
             {filteredData.length > 10 && (

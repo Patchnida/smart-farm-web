@@ -197,7 +197,7 @@ export const initialData = [
     date: "Wednesday, October 25, 2024",
     time: "00.00",
     detail: [
-      { id: "0001", temp: "19", humid: "69", moisture: "68", disease: "เป็นโรคใบจุดตากบ", npk: { nitrogen: 49, phosphorus: 3, potassium: 49 } },
+      { id: "0001", temp: "20", humid: "60", moisture: "59", disease: "เป็นโรคใบจุดตากบ", npk: { nitrogen: 201, phosphorus: 10, potassium: 78 } },
       { id: "0002", temp: "20", humid: "60", moisture: "60", disease: "ไม่เป็นโรค", npk: { nitrogen: 50, phosphorus: 4, potassium: 50 } },
       { id: "0003", temp: "30", humid: "80", moisture: "70", disease: "ไม่เป็นโรค", npk: { nitrogen: 60, phosphorus: 5, potassium: 80 } },
       { id: "0004", temp: "31", humid: "71", moisture: "69", disease: "ไม่เป็นโรค", npk: { nitrogen: 100, phosphorus: 8, potassium: 100 } },
